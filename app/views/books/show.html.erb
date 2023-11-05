@@ -1,1 +1,50 @@
+<h2>New book</h2>
+<%= form_with model: @book do |f| %>
+  <div class="newbook">
+    <p>Title</p>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="newbook">
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="newbook">
+    <%= f.submit "Create Book" %>
+  </div>
+<% end %>
+
 <h2>Book detail</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@user) do %>
+          <%= image_tag @user.get_profile_image(100,100) %><br>
+          <%= @user.name %>
+        <% end %>  
+      </td>
+      <td>
+        <%= link_to book_path(@book_found) do %>
+          <%= @book_found.title %>
+        <% end %>
+      </td>
+      <td>
+        <%= @book_found.body %>
+      </td>
+      <% if @user == current_user %>
+        <td>
+          <%= link_to "Edit", edit_book_path(@book_found) %>
+        </td>
+        <td>
+          <%= link_to "Destroy",book_path(@book_found), method: :delete %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>  
+</table>
+
+
+
+
