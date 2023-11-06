@@ -1,1 +1,58 @@
-<h1>Users Index</h1>
+<h2>User info</h2>
+<%= image_tag @user.get_profile_image(100,100) %>
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to edit_user_path(@user) do %>
+  <i class="fa-solid fa-user-gear"></i>
+<% end %>
+
+<h2>New book</h2>
+<%= form_with model: @book do |f| %>
+  <div class="newbook">
+    <p>Title</p>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="newbook">
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="newbook">
+    <%= f.submit "Create Book" %>
+  </div>
+<% end %>
+
+<h2>Users</h2>
+<table>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image(100,100) %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

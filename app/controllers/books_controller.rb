@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
   # 一覧、新規投稿
   def index
-    @book = Book.new
     @books = Book.all
+    @book_found = Book.first
+    @user = @book_found.user
+    @new_book = Book.new
   end
   # 詳細
   def show
@@ -41,6 +43,8 @@ class BooksController < ApplicationController
   end
   
 end
+
+
 
 
 

@@ -1,1 +1,74 @@
-<h1>User info</h1>
+<h2>User info</h2>
+<%= image_tag @user_found.get_profile_image(100,100) %>
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= @user_found.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user_found.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to edit_user_path(@user_found) do %>
+  <i class="fa-solid fa-user-gear"></i>
+<% end %>
+
+<h2>New book</h2>
+<%= form_with model: @book do |f| %>
+  <div class="newbook">
+    <p>Title</p>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="newbook">
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="newbook">
+    <%= f.submit "Create Book" %>
+  </div>
+<% end %>
+
+<h2>Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td>
+          <!--ユーザーの詳細ページへリダイレクト-->
+          <%= link_to user_path(book.user_id) do %>
+            <%= image_tag book.user.get_profile_image(100,100) %>
+          <% end %>
+        </td>
+        <td>
+          <!--bookの詳細ページへリダイレクト-->
+          <%= link_to book_path(book.id) do %>
+            <%= book.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= book.body %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+
