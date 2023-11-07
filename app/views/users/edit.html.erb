@@ -1,4 +1,21 @@
-<h2>User edit</h2>
+<h2>User info</h2>
+<%= form_with model: @user do |f| %>
+  <div class="edit_user">
+    <p>Name</p>
+    <%= f.text_field :name, autofocus: true, id:"inputName" %>
+  </div>
+  <div class="edit_user">
+    <p>Image</p>
+    <%= f.file_field :profile_image, accept: "image/*" %>
+  </div>
+  <div class="edit_user">
+    <p>Intoroduction</p>
+    <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction" %>
+  </div>
+  <div class="edit_user">
+    <%= f.submit "Update User" %>
+  </div>
+<% end %>
 
 
 
