@@ -1,5 +1,5 @@
 <h2>User info</h2>
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user_found do |f| %>
   <div class="edit_user">
     <p>Name</p>
     <%= f.text_field :name, autofocus: true, id:"inputName" %>
@@ -16,6 +16,7 @@
     <%= f.submit "Update User" %>
   </div>
 <% end %>
+
 
 
 

@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   
   def edit
     @user_found = User.find(params[:id])
+  end
+  
+  def update
+    @user_found = User.find(params[:id])
     @user_found.update(user_params)
     redirect_to user_path(@user_found)
   end
@@ -24,3 +28,4 @@ class UsersController < ApplicationController
   end
   
 end
+
