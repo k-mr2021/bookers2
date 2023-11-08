@@ -4,12 +4,12 @@ class BooksController < ApplicationController
     @new_book = Book.new
     @books = Book.all
     @book_found = Book.first
-    @user = @book_found.user
+    @user_found = @book_found.user
   end
   # 詳細
   def show
     @book_found = Book.find(params[:id])
-    @user = @book_found.user
+    @user_found = @book_found.user
     @new_book = Book.new
   end
   # 保存
@@ -43,6 +43,8 @@ class BooksController < ApplicationController
   end
   
 end
+
+
 
 
 

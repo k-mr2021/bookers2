@@ -1,21 +1,6 @@
-<h2>User info</h2>
-<%= image_tag @user.get_profile_image(100,100) %>
-<table>
-  <tbody>
-    <tr>
-      <th>name</th>
-      <th><%= @user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= @user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
+<%= render 'users/user_info', user_found: @user_found %>
 
-<%= link_to edit_user_path(@user) do %>
-  <i class="fa-solid fa-user-gear"></i>
-<% end %>
+<%= render 'books/new_book', book: @newbook %>
 
 <h2>New book</h2>
 <%= form_with model: @new_book do |f| %>
@@ -63,5 +48,7 @@
     <% end %>
   </tbody>
 </table>
+
+
 
 

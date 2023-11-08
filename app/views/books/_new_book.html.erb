@@ -1,0 +1,18 @@
+<!--New book部分のテンプレート users/index,show  books/index,showに適用-->
+<h2>New book</h2>
+<%= form_with model: book do |f| %>
+  <div class="newbook">
+    <p>Title</p>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="newbook">
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="newbook">
+    <%= f.submit "Create Book" %>
+  </div>
+<% end %>
+
