@@ -1,55 +1,49 @@
-<%= render 'user_info', user_found: @user_found %>
-
-<%= render 'books/new_book', book: @book %>
-
-<h2>New book</h2>
-<%= form_with model: @book do |f| %>
-  <div class="newbook">
-    <p>Title</p>
-    <%= f.text_field :title %>
-  </div>
-  
-  <div class="newbook">
-    <p>Opinion</p>
-    <%= f.text_area :body %>
-  </div>
-  
-  <div class="newbook">
-    <%= f.submit "Create Book" %>
-  </div>
-<% end %>
-
-<h2>Books</h2>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |book| %>
-      <tr>
-        <td>
-          <!--ユーザーの詳細ページへリダイレクト-->
-          <%= link_to user_path(book.user_id) do %>
-            <%= image_tag book.user.get_profile_image(100,100) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--ユーザーの詳細-->
+      <%= render 'user_info', user_found: @user_found %>
+      <!--本の新規投稿-->
+      <%= render 'books/new_book', book: @book %>
+     </div> 
+     <div class="offset-md-1"></div>
+     <div class="col-md-8">
+      <!--そのユーザーが投稿した本の一覧-->
+      <h2 class="title">Books</h2>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <!--ユーザーの詳細ページへリダイレクト-->
+                <%= link_to user_path(book.user_id) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <td>
+                <!--bookの詳細ページへリダイレクト-->
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-        <td>
-          <!--bookの詳細ページへリダイレクト-->
-          <%= link_to book_path(book.id) do %>
-            <%= book.title %>
-          <% end %>
-        </td>
-        <td>
-          <%= book.body %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 
 
 

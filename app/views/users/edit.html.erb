@@ -1,21 +1,32 @@
-<h2>User info</h2>
-<%= form_with model: @user_found do |f| %>
-  <div class="edit_user">
-    <p>Name</p>
-    <%= f.text_field :name, autofocus: true, id:"inputName" %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h2>User info</h2>
+      <%= form_with model: @user_found do |f| %>
+        <div class="edit">
+          <p>Name</p>
+          <%= f.text_field :name, autofocus: true, id:"inputName", class: "form-control" %>
+        </div>
+        <div class="edit_user">
+          <p>Image</p>
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        <div class="edit">
+          <p>Intoroduction</p>
+          <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", class: "form-control" %>
+        </div>
+        <div class="edit_submit">
+          <%= f.submit "Update User", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="edit_user">
-    <p>Image</p>
-    <%= f.file_field :profile_image, accept: "image/*" %>
-  </div>
-  <div class="edit_user">
-    <p>Intoroduction</p>
-    <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction" %>
-  </div>
-  <div class="edit_user">
-    <%= f.submit "Update User" %>
-  </div>
-<% end %>
+</div>
+
+
+
+
+
 
 
 

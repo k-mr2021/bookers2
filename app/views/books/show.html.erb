@@ -1,53 +1,50 @@
-<%= render 'users/user_info', user_found: @user_found %>
-
-<%= render 'books/new_book', book: @new_book %>
-
-<h2>New book</h2>
-<%= form_with model: @new_book do |f| %>
-  <div class="newbook">
-    <p>Title</p>
-    <%= f.text_field :title %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--ユーザーの詳細-->
+      <%= render 'users/user_info', user_found: @user_found %>
+      <!--本の新規投稿-->
+      <%= render 'books/new_book', book: @new_book %>
+    </div> 
+    
+    <div class="offset-md-1"></div> 
+    
+    <div class="col-md-8">
+      <!--本の詳細-->
+      <h2 class="title">Book detail</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user_found) do %>
+                <%= image_tag @user_found.get_profile_image(100,100) %><br>
+                <%= @user_found.name %>
+              <% end %>  
+            </td>
+            <td>
+              <%= link_to book_path(@book_found) do %>
+                <%= @book_found.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= @book_found.body %>
+            </td>
+            <% if @user_found == current_user %>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book_found), class: "btn btn-sm btn-success" %>
+              </td>
+              <td>
+                <%= link_to "Destroy",book_path(@book_found), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>  
+      </table>
+    </div>  
   </div>
-  
-  <div class="newbook">
-    <p>Opinion</p>
-    <%= f.text_area :body %>
-  </div>
-  
-  <div class="newbook">
-    <%= f.submit "Create Book" %>
-  </div>
-<% end %>
+</div>
 
-<h2>Book detail</h2>
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <%= link_to user_path(@user_found) do %>
-          <%= image_tag @user_found.get_profile_image(100,100) %><br>
-          <%= @user_found.name %>
-        <% end %>  
-      </td>
-      <td>
-        <%= link_to book_path(@book_found) do %>
-          <%= @book_found.title %>
-        <% end %>
-      </td>
-      <td>
-        <%= @book_found.body %>
-      </td>
-      <% if @user == current_user %>
-        <td>
-          <%= link_to "Edit", edit_book_path(@book_found) %>
-        </td>
-        <td>
-          <%= link_to "Destroy",book_path(@book_found), method: :delete %>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>  
-</table>
+
 
 
 

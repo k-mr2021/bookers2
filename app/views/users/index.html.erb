@@ -1,12 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
+      <!--ユーザーの詳細-->
       <%= render 'user_info', user_found: @user_found %>
+      <!--本の新規投稿-->
       <%= render 'books/new_book', book: @book %>
     </div>  
     <div class="offset-md-1"></div>
     <div class="col-md-8">
-      <h2>Users</h2>
+      <!--ユーザーの一覧-->
+      <h2 class="title">Users</h2>
       <table>
         <thead>
           <tr>
