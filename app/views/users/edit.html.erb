@@ -2,6 +2,8 @@
   <div class="row">
     <div class="mx-auto">
       <h2>User info</h2>
+      <!--バリデーションエラーメッセージ-->
+      <%= render 'layouts/error', obj: @user_found %>
       <%= form_with model: @user_found do |f| %>
         <div class="edit">
           <p>Name</p>
@@ -22,6 +24,7 @@
     </div>
   </div>
 </div>
+
 
 
 

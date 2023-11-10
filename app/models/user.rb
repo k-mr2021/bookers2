@@ -15,5 +15,13 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  # 一意性を持たせ、かつ2～20文字の範囲で設定
+  validates :name, uniqueness: true, length: { in: 2..20 }
+  
+  # 最大50文字までに設定
+  validates :introduction, length: { maximum: 50 }
+
+  
 end
 

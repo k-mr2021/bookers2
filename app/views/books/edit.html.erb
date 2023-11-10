@@ -2,6 +2,8 @@
   <div class="row">
     <div class="mx-auto">
       <h1>Editing Book</h1>
+      <!--バリデーションエラーメッセージ-->
+      <%= render 'layouts/error', obj: @book_found %>
       <%= form_with model: @book_found, method: :patch do |f| %>
         <div class="edit">
           <p>Title</p>
@@ -21,4 +23,5 @@
     </div>
   </div>
 </div>
+
 

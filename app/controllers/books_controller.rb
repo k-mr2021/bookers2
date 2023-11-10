@@ -1,10 +1,13 @@
 class BooksController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
   # 一覧、新規投稿
   def index
     @new_book = Book.new
     @books = Book.all
     @book_found = Book.first
-    @user_found = @book_found.user
+    @user_found = @book_found.user 
+    # index.html.erbバリデーションエラーのobjに@bookを渡すため
+    @book = @new_book
   end
   # 詳細
   def show
@@ -19,6 +22,10 @@ class BooksController < ApplicationController
     if @book.save
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book)
+    else
+      @user_found = current_user
+      @books = Book.all
+      render :index
     end
   end
   # 編集
@@ -31,6 +38,8 @@ class BooksController < ApplicationController
     if @book_found.update(book_params)
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(@book_found.id)
+    else
+      render :edit
     end
   end
   # 削除
@@ -46,7 +55,20 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
   
+  def ensure_correct_user
+    book = Book.find(params[:id])
+    unless book.user_id == current_user.id
+      redirect_to books_path
+    end
+  end
+  
 end
+
+
+
+
+
+
 
 
 
