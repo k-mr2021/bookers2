@@ -17,8 +17,10 @@ class UsersController < ApplicationController
   
   def update
     @user_found = User.find(params[:id])
-    @user_found.update(user_params)
-    redirect_to user_path(@user_found)
+    if @user_found.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user_found)
+    end
   end
   
   private
@@ -28,5 +30,6 @@ class UsersController < ApplicationController
   end
   
 end
+
 
 
