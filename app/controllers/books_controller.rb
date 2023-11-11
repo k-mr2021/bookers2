@@ -4,8 +4,7 @@ class BooksController < ApplicationController
   def index
     @new_book = Book.new
     @books = Book.all
-    @book_found = Book.first
-    @user_found = @book_found.user 
+    @user_found = User.find(current_user.id)
     # index.html.erbバリデーションエラーのobjに@bookを渡すため
     @book = @new_book
   end
@@ -63,6 +62,10 @@ class BooksController < ApplicationController
   end
   
 end
+
+
+
+
 
 
 
